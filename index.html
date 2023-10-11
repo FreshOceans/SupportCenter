@@ -17,6 +17,14 @@
         environment: 'prod-usw2',
         deploymentId: 'c0388a09-10f0-44ae-84dc-84125445fdd1'
       });
+
+      var lang = navigator.languages && navigator.languages[0] || navigator.language || navigator.userLanguage;
+        lang = lang ? lang.split("-")[0] : "";
+
+      Genesys("subscribe", "Database.ready", function() {
+      Genesys("command", "Database.set", { messaging: { customAttributes: { Language: lang }}});
+      });
+      
     </script>
               
 </head>
